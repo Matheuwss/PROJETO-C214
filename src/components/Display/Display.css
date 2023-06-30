@@ -19,3 +19,11 @@
     color: #310070;
     height: 80px;
 }
+
+.display-res-error {
+    font-size: 24px;
+    color: #310070;
+    height: 80px;
+    margin-top: 10px;
+    margin-bottom: -10px;
+}

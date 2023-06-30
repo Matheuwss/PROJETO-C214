@@ -6,8 +6,8 @@ import "./Calculator.css";
 export default function Calculator() {
   const [valorDisplay, setValorDisplay] = useState(" ");
   const [resultado, setResultado] = useState(" ");
-  const [acumulador, setAcumulador] = useState(0);
   const [operador, setOperador] = useState(false);
+  const [error, setError] = useState(false);                          //Adicionado estado p indicar erro
 
   //Funções
   const realizarCalculo = () => {
@@ -18,12 +18,13 @@ export default function Calculator() {
       if (!Number.isFinite(resultado)) {
         throw new Error("Não é possível dividir por zero");
       }
-  
-      setAcumulador(resultado);
+
       setResultado(parseFloat(resultado.toFixed(7)).toString());
       setOperador(true);
+      setError(false);                                                //Define o estado de erro como falso em caso de sucesso
     } catch (error) {
       setResultado("Erro: " + error.message);
+      setError(true);                                                 //Define o estado de erro como verdadeiro em caso de erro
     }
   };
 
@@ -48,20 +49,20 @@ export default function Calculator() {
   const clearMemory = () => {
     setValorDisplay(" ");
     setResultado(" ");
-    setAcumulador(0);
     setOperador(false);
   };
 
   const backspace = () => {
     setValorDisplay(valorDisplay.slice(0, -1));
     setOperador(false);
+    setResultado(" ");
   };
   
   return (
     <div className="calculator-container">
       <h3 className="calculator-title">CALCULADORA</h3>
       <div className="calculator-display">
-        <Display valor={valorDisplay} res={resultado} />
+        <Display valor={valorDisplay} res={resultado} error={error} />
       </div>
       <div className="calculator-button">
         <Button label="AC" onClick={clearMemory} />
