@@ -1,0 +1,21 @@
+.display {
+    display: flex;
+    padding: 0 20px;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #cee3ff;
+    flex-direction: column;
+    width: 260px;
+}
+
+.display-op {
+    font-size: 30px;
+    color: #000000;
+    height: 28px;
+}
+
+.display-res {
+    font-size: 60px;
+    color: #310070;
+    height: 80px;
+}
